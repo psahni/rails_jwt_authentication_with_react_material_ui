@@ -1,13 +1,11 @@
-# frozen_string_literal: true
-
-class User::RegistrationsController < Devise::RegistrationsController
+class Api::RegistrationsController < Devise::RegistrationsController
   respond_to :json
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
   #skip_before_action :require_no_authentication, only: [:create]
 
   def create
-    logger.info('[RegistrationsController] create')
+    build_resource(sign_up_params)
     super
   end
 
@@ -30,6 +28,11 @@ class User::RegistrationsController < Devise::RegistrationsController
         status: {message: "User couldn't be created successfully. #{resource.errors.full_messages.to_sentence}"}
       }, status: :unprocessable_entity
     end
+  end
+
+
+  def sign_up_params
+    params.require(:registration).require(:user).permit(:email, :password, :password_confirmation)
   end
 
   # GET /resource/sign_up
