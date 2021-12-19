@@ -27,8 +27,9 @@ class ApiUser < User
 
 
   def encode_token
-    payload = { id: id, scp: :api_user, sub: id }
+    payload = { 'id': id, 'scp': :api_user, 'sub': id }
     @token = Warden::JWTAuth::TokenEncoder.new.call(payload)
+    update_token
   end
 
   def token
@@ -36,7 +37,12 @@ class ApiUser < User
     @token
   end
 
-  def decode_token(token)
-    Warden::JWTAuth::TokenDecoder.new.call(token)
+  def decode_token(_token)
+    Warden::JWTAuth::TokenDecoder.new.call(_token)
+  end
+
+  def update_token
+    payload = decode_token(@token)
+    update_column(:jti, payload['jti'])
   end
 end

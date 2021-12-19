@@ -60,8 +60,7 @@ class ApplicationController < ActionController::Base
 
   def validate_token(payload)
     jti = payload['jti']
-    if current_user.jti != jti
-      raise JWT::ExpiredSignature
-    end
+    raise JWT::ExpiredSignature unless current_user.jti == jti
+    true
   end
 end
