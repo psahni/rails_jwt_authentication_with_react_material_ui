@@ -26,16 +26,17 @@ class ApiUser < User
   end
 
 
-  # def encode_token
-  #   payload = { id: id }
-  #   @token ||= Warden::JWTAuth::TokenEncoder.new.call(payload)
-  # end
+  def encode_token
+    payload = { id: id, scp: :api_user, sub: id }
+    @token = Warden::JWTAuth::TokenEncoder.new.call(payload)
+  end
 
-  # def token
-  #   @token
-  # end
+  def token
+    encode_token
+    @token
+  end
 
-  # def decode_token(token)
-  #   Warden::JWTAuth::TokenDecoder.new.call(token)
-  # end
+  def decode_token(token)
+    Warden::JWTAuth::TokenDecoder.new.call(token)
+  end
 end
