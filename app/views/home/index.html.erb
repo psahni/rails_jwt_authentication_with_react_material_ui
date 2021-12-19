@@ -1,0 +1,6 @@
+<div class=''>
+    <%= react_component("HelloWorld", { greeting: "Hello from react-rails." }) %>
+    <div>
+        <%=link_to "Logout",  destroy_user_session_path, :method => :delete %>
+    </div>
+</div>

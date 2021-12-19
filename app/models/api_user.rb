@@ -26,6 +26,11 @@ class ApiUser < User
   end
 
 
+  #
+    # ===================================================================================================================================
+    # !! Warden startegy not working with namespace devise routes, so had to manually to do it. Have to debug or change the routing way
+    # ==================================================================================================================================
+  #
   def encode_token
     payload = { 'id': id, 'scp': :api_user, 'sub': id }
     @token = Warden::JWTAuth::TokenEncoder.new.call(payload)
