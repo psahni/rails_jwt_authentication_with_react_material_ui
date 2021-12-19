@@ -15,7 +15,19 @@
  */
 
 
+ * {
+    margin: 0;
+ }
+
+
  .main {
      display: flex;
      flex-direction: column;
+     margin-left: 10em;
+     margin-top: 5em;
+     margin-right: 5em;
+ }
+
+ .flex-end {
+    align-self: flex-end;
  }

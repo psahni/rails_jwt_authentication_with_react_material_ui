@@ -1,11 +1,18 @@
 import React from "react"
 import PropTypes from "prop-types"
+import CssBaseline from '@mui/material/CssBaseline';
+import Box from '@mui/material/Box';
+import Container from '@mui/material/Container';
+
 class HelloWorld extends React.Component {
   render () {
     return (
-      <div>
-        Greeting: {this.props.greeting}
-      </div>
+      <React.Fragment>
+        <CssBaseline />
+        <Container fixed>
+          <Box sx={{ bgcolor: '#cfe8fc', height: '85vh' }} />
+        </Container>
+      </React.Fragment>
     );
   }
 }
