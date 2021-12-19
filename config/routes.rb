@@ -3,6 +3,9 @@ Rails.application.routes.draw do
   get 'home', to: 'home#index'
 
   devise_for :users, defaults: { format: :html },
+                    controllers: {
+                      sessions: 'users/sessions'
+                    },
                     path: '', path_names: { sign_in: 'login', sign_out: 'logout', signup: 'signup', registration: 'signup' }
   
   devise_scope :user do

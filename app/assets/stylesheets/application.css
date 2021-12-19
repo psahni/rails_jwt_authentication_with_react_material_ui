@@ -17,6 +17,7 @@
 
  * {
     margin: 0;
+    font-family: 'Roboto';
  }
 
 
@@ -30,4 +31,18 @@
 
  .flex-end {
     align-self: flex-end;
+ }
+
+ .login-form {
+    display: flex;
+    flex-direction: column;
+ }
+
+ .login-btn {
+    margin-top: 1em;
+ }
+
+
+ .login-form .MuiOutlinedInput-root {
+     width: 20em;
  }

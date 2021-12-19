@@ -27,7 +27,7 @@ class ApplicationController < ActionController::Base
   end
 
   def current_user
-    @current_user
+    json_request? ? @current_user : super
   end
 
   def after_sign_in_path_for(_resource)
