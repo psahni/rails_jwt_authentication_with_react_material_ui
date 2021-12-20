@@ -13,19 +13,28 @@
 
   * open database.yml and update your database settings
 
-  ```
+  ```yaml
     default: &default
-    adapter: postgresql
-    encoding: unicode
-    pool: 40
-    host: 127.0.0.1
-    port: 5432
-    username: <your_postgresql_username>
-    password: <your_password>
+      adapter: postgresql
+      encoding: unicode
+      pool: 40
+      host: 127.0.0.1
+      port: 5432
+      username: <your_postgresql_username>
+      password: <your_password>
   ```
 
 ```
- $ rake db:create
+  $ bundle install
+```
+
+```
+  $ yarn
+```
+
+
+```
+  $ rake db:create
 ```
 
 ```
@@ -38,13 +47,13 @@
 
 
 ## Api requests
-* open Postman
+  #### Open Postman
 
 
-* Register
+  #### Register
 
 ```
-  SIGN UP http://127.0.0.1:3000/api/signup
+  POST http://127.0.0.1:3000/api/signup
 
   Body
 
@@ -63,7 +72,7 @@
   
 ```
 
-* Login Request
+  #### Login Request
 
 ```
   POST http://127.0.0.1:3000/api/login
@@ -83,14 +92,13 @@
 
   Content-Type application/json
   Accept    application/json
-  Authorization Bearer <token_rece
 ```
 
 
-* Home
+  #### Home
 
 ```
-  SIGN UP http://127.0.0.1:3000/home
+  GET http://127.0.0.1:3000/home
 
 
   Headers
@@ -101,10 +109,10 @@
 
 ```
 
-* Logout
+  #### Logout
 
 ```
-  SIGN UP http://127.0.0.1:3000/api/logout
+  DELETE http://127.0.0.1:3000/api/logout
 
 
   Headers
@@ -114,3 +122,47 @@
   Authorization Bearer <token_received_from_the_login_req>
 
 ```
+
+## Materal UI
+
+* Material UI has been integrated
+* Refer 
+  - package.json
+  - Login.jsx component
+
+
+## TODO: Referrals
+
+* Create Model Referral
+
+```
+  table referrals
+    id: integer
+    referral_code: string
+    referral_email: string
+    user_id: integer
+```
+
+* Create a form on UI 
+
+  ```
+    form with email text field
+    submit button
+    create Referral object (generate referral code at the backend)
+  ```
+
+* Trigger email
+
+  ```
+    send email with referral link with referral code appended in the url
+  ```
+
+* On Email Receive
+
+  ```
+    User clicks the email
+    lands on the referral page
+    If referral code is valid, redirect the user on the registration page with email field filled (option 1)
+    If referral code is valid, create the user with referral email and dummy password and sign in the user (option 2)
+    Send the dummy password through email (User will have the ability change the password later on)
+  ```
