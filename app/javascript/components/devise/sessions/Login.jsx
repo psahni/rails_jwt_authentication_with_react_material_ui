@@ -1,5 +1,5 @@
 import React from "react"
-import { TextField, FormLabel, Button, Box  } from '@mui/material';
+import { TextField, FormLabel, Button  } from '@mui/material';
 
 class Login extends React.Component { 
   render() {
@@ -22,7 +22,14 @@ class Login extends React.Component {
           id="user_password"
         />
         <div className='login-btn'>
-          <Button type="submit" name="commit" value="Log in" data-disable-with="Log in" size="large" variant="outlined">Login</Button>
+          <Button 
+            type="submit" 
+            name="commit" 
+            value="Log in" 
+            data-disable-with="Log in" 
+            size="large" 
+            variant="outlined"
+          >Login</Button>
         </div>
       </React.Fragment>
     )

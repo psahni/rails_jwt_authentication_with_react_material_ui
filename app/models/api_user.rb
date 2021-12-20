@@ -2,8 +2,6 @@ class ApiUser < User
   include Devise::JWT::RevocationStrategies::JTIMatcher
   devise :jwt_authenticatable, jwt_revocation_strategy: self
 
-  validates :jti, presence: true
-
   attr_accessor :token
 
   def generate_jwt
@@ -25,12 +23,6 @@ class ApiUser < User
     self.token = token
   end
 
-
-  #
-    # ===================================================================================================================================
-    # !! Warden startegy not working with namespace devise routes, so had to manually to do it. Have to debug or change the routing way
-    # ==================================================================================================================================
-  #
   def encode_token
     payload = { 'id': id, 'scp': :api_user, 'sub': id }
     @token = Warden::JWTAuth::TokenEncoder.new.call(payload)

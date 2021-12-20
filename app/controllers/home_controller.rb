@@ -9,7 +9,7 @@ class HomeController < ApplicationController
       format.json { 
         render status: 200,
         json: {
-          success: 'true',
+          success: true,
           message: 'Home Page',
         }
       }

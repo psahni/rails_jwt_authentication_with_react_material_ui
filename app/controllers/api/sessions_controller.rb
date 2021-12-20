@@ -57,12 +57,10 @@ class Api::SessionsController < Devise::SessionsController
   def sign_out_and_respond(resource)
     revoke_token(resource)
     sign_out(resource)
-    #render status: 401, json: { success: 'false', message: "No API access allowed." }
   end
 
   def current_token(resource)
     token = request.env['warden-jwt_auth.token']
-    p token
     token = resource.token if token.nil?
     token
   end
